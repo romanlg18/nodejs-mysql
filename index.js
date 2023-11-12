@@ -18,6 +18,3 @@ app.use('/API/Favorites/Delete', FavoritesRouter)
 app.use('/API/Favorites/Insert', FavoritesRouter)
 
 
-app.listen(5018)
-console.log("Server running on port 5018")
-
