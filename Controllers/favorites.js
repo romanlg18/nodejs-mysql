@@ -37,7 +37,7 @@ export const favorites = async (req, res) => {
 
 export const favoritesDelete = async (req, res) => {
     try {
-      const {IdFavorito} = req.body;
+      const {id} = req.params;
   
       // Verificar si el ID existe en la base de datos
       const [existingRecord] = await pool.query('SELECT IdCharacter from FAVORITOS WHERE IdFavorito = ?', [IdFavorito]);
@@ -62,7 +62,7 @@ export const favoritesDelete = async (req, res) => {
 
 export const favoritesInsert = async (req, res) => {
   try {
-    const {IdCharacter} = req.body;
+    const {id} = req.params;;
     console.log('idToInsert:', IdCharacter);
     //Intenta insertar el ID en la base de datos
     const result = await pool.query('INSERT INTO FAVORITOS (IdCharacter) VALUES (?)', [IdCharacter]);
