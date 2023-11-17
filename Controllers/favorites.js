@@ -48,7 +48,7 @@ export const favoritesDelete = async (req, res) => {
         return res.status(404).send('No se encontró el registro con el ID proporcionado.');
       }
       // Si existe, procede con la eliminación
-      const result = await pool.query('DELETE FROM FAVORITOS WHERE IdFavorito = ?', [id]);
+      const result = await pool.query('DELETE FROM FAVORITOS WHERE IdCharacter = ?', [id]);
       console.log(result);
       res.send('¡Personaje en tus favoritos eliminado!');
     } catch (error) {
