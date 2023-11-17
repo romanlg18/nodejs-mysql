@@ -40,15 +40,15 @@ export const favoritesDelete = async (req, res) => {
       const {id} = req.params;
   
       // Verificar si el ID existe en la base de datos
-      const [existingRecord] = await pool.query('SELECT IdCharacter from FAVORITOS WHERE IdFavorito = ?', [IdFavorito]);
-      console.log(IdFavorito);
+      const [existingRecord] = await pool.query('SELECT IdCharacter from FAVORITOS WHERE IdFavorito = ?', [id]);
+      console.log(id);
       console.log(existingRecord);
       if (!existingRecord || existingRecord.length === 0) {
         // Si no hay registros con el ID proporcionado, devuelve un mensaje de error
         return res.status(404).send('No se encontró el registro con el ID proporcionado.');
       }
       // Si existe, procede con la eliminación
-      const result = await pool.query('DELETE FROM FAVORITOS WHERE IdFavorito = ?', [IdFavorito]);
+      const result = await pool.query('DELETE FROM FAVORITOS WHERE IdFavorito = ?', [id]);
       console.log(result);
       res.send('¡Personaje en tus favoritos eliminado!');
     } catch (error) {
@@ -63,9 +63,9 @@ export const favoritesDelete = async (req, res) => {
 export const favoritesInsert = async (req, res) => {
   try {
     const {id} = req.params;;
-    console.log('idToInsert:', IdCharacter);
+    console.log('id:', id);
     //Intenta insertar el ID en la base de datos
-    const result = await pool.query('INSERT INTO FAVORITOS (IdCharacter) VALUES (?)', [IdCharacter]);
+    const result = await pool.query('INSERT INTO FAVORITOS (IdCharacter) VALUES (?)', [id]);
     console.log(result);
     res.send('¡Personaje agregado a tus favoritos!');
   } catch (error) {
