@@ -40,10 +40,10 @@ export const favoritesDelete = async (req, res) => {
       const {id} = req.params;
   
       // Verificar si el ID existe en la base de datos
-      const [existingRecord] = await pool.query('SELECT IdCharacter from FAVORITOS WHERE IdFavorito = ?', [id]);
-      console.log(id);
-      console.log(existingRecord);
-      if (existingRecord.length == 0) {
+      const [existingRecord] = await pool.query('SELECT IdCharacter from FAVORITOS WHERE IdCharacter = ?', id);
+      
+      console.log(existingRecord.length);
+      if (existingRecord.length === 0) {
         // Si no hay registros con el ID proporcionado, devuelve un mensaje de error
         return res.status(404).send('No se encontró el registro con el ID proporcionado.');
       }
